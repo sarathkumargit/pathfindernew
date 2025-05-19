@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher Education Pathfinder Sri Lanka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .btn-primary {
+                @apply px-6 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition duration-300 shadow-md;
+            }
+            .btn-secondary {
+                @apply px-6 py-2 bg-white text-primary-600 font-medium rounded-lg border border-primary-600 hover:bg-primary-50 transition duration-300;
+            }
+            .card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+            }
+            .input-field {
+                @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500;
+            }
+            .badge {
+                @apply px-2 py-1 text-xs font-semibold rounded-full;
+            }
+            .badge-blue {
+                @apply bg-blue-100 text-blue-800;
+            }
+            .badge-green {
+                @apply bg-green-100 text-green-800;
+            }
+            .badge-purple {
+                @apply bg-purple-100 text-purple-800;
+            }
+            .badge-orange {
+                @apply bg-orange-100 text-orange-800;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://via.placeholder.com/150x50?text=SL+EduPath" alt="Logo">
+                    </a>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="#" class="border-b-2 border-primary-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            Explore Programs
+                        </a>
+                        <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            Institutions
+                        </a>
+                        <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            News & Events
+                        </a>
+                        <a href="#" class="border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            About
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="hidden md:ml-4 md:flex md:items-center md:space-x-4">
+                        <button class="btn-secondary">
+                            Log in
+                        </button>
+                        <button class="btn-primary">
+                            Sign up
+                        </button>
+                    </div>
+                    <div class="flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-primary-50 border-l-4 border-primary-500 text-primary-700 block pl-3 pr-4 py-2 text-base font-medium">
+                    Home
+                </a>
+                <a href="#" class="border-l-4 border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 text-base font-medium">
+                    Explore Programs
+                </a>
+                <a href="#" class="border-l-4 border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 text-base font-medium">
+                    Institutions
+                </a>
+                <a href="#" class="border-l-4 border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 text-base font-medium">
+                    News & Events
+                </a>
+                <a href="#" class="border-l-4 border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 text-base font-medium">
+                    About
+                </a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="flex items-center px-4">
+                    <div class="flex-shrink-0">
+                        <button class="w-full mb-2 btn-secondary">
+                            Log in
+                        </button>
+                    </div>
+                    <div class="ml-3">
+                        <button class="w-full btn-primary">
+                            Sign up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Find Your Perfect Higher Education Path in Sri Lanka</h1>
+                    <p class="text-lg mb-8">Enter your qualifications and discover programs that match your profile. Compare options and make informed decisions about your future.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="btn-primary bg-white text-primary-700 hover:bg-gray-100">
+                            Get Personalized Recommendations
+                        </button>
+                        <button class="btn-secondary bg-transparent border-white text-white hover:bg-primary-700">
+                            Explore All Programs
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://via.placeholder.com/600x400?text=Students+Image" alt="Students" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Qualification Input Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Enter Your Qualifications</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Our algorithm will match your results with eligible programs and provide personalized recommendations.</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- O/L Results Section -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">O/L Results</h3>
+                    <div class="space-y-4">
+                        <div id="ol-subjects-container">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <select class="input-field">
+                                    <option>Mathematics</option>
+                                    <option>Science</option>
+                                    <option>English</option>
+                                    <option>Sinhala</option>
+                                    <option>Tamil</option>
+                                    <option>History</option>
+                                    <option>Religion</option>
+                                    <option>ICT</option>
+                                    <option>Business Studies</option>
+                                </select>
+                                <select class="input-field">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>S</option>
+                                    <option>W</option>
+                                </select>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-ol-subject" class="flex items-center text-primary-600 hover:text-primary-800">
+                            <i class="fas fa-plus mr-2"></i> Add Subject
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- A/L Results Section -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">A/L Results</h3>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Stream</label>
+                        <select class="input-field">
+                            <option>Science</option>
+                            <option>Commerce</option>
+                            <option>Arts</option>
+                            <option>Technology</option>
+                        </select>
+                    </div>
+                    <div class="space-y-4">
+                        <div id="al-subjects-container">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <select class="input-field">
+                                    <option>Combined Mathematics</option>
+                                    <option>Physics</option>
+                                    <option>Chemistry</option>
+                                    <option>Biology</option>
+                                    <option>ICT</option>
+                                    <option>Economics</option>
+                                    <option>Business Studies</option>
+                                    <option>Accounting</option>
+                                </select>
+                                <select class="input-field">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>S</option>
+                                    <option>F</option>
+                                </select>
+                                <button class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-al-subject" class="flex items-center text-primary-600 hover:text-primary-800">
+                            <i class="fas fa-plus mr-2"></i> Add Subject
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button class="btn-primary text-lg px-8 py-3">
+                    Find Matching Programs
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Search Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Advanced Search Options</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Filter programs by various criteria to find exactly what you're looking for.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Field of Study</label>
+                        <select class="input-field">
+                            <option>All Fields</option>
+                            <option>Engineering</option>
+                            <option>Medicine</option>
+                            <option>Business & Management</option>
+                            <option>IT & Computer Science</option>
+                            <option>Humanities & Social Sciences</option>
+                            <option>Law</option>
+                            <option>Agriculture</option>
+                            <option>Architecture</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Institution Type</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Government</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Private</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Semi-Gov</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Program Type</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Degree</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Diploma</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Certificate</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">HND</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+                        <select class="input-field">
+                            <option>Any Duration</option>
+                            <option>Less than 1 year</option>
+                            <option>1-2 years</option>
+                            <option>3-4 years</option>
+                            <option>More than 4 years</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Fee Structure</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Free</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Paid</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Enrollment Type</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Full-time</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <span class="ml-2 text-sm text-gray-700">Part-time</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button class="btn-primary">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Recommendations Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Recommended Programs</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Based on your qualifications, these programs are the best match for you.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Program Card 1 -->
+            <div class="card">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="badge badge-blue">Government</span>
+                            <span class="badge badge-green ml-2">Degree</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-primary-500">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mt-3 mb-2">BSc in Computer Science</h3>
+                    <p class="text-gray-600 mb-4">University of Colombo</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-1">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>4 Years (Full-time)</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-money-bill-alt mr-2"></i>
+                        <span>Free</span>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4 mt-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium text-gray-500">Match Score</span>
+                            <span class="text-sm font-bold text-primary-600">98%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button class="w-full btn-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program Card 2 -->
+            <div class="card">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="badge badge-blue">Government</span>
+                            <span class="badge badge-green ml-2">Degree</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-primary-500">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mt-3 mb-2">BSc in Software Engineering</h3>
+                    <p class="text-gray-600 mb-4">University of Moratuwa</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-1">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>4 Years (Full-time)</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-money-bill-alt mr-2"></i>
+                        <span>Free</span>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4 mt-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium text-gray-500">Match Score</span>
+                            <span class="text-sm font-bold text-primary-600">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button class="w-full btn-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program Card 3 -->
+            <div class="card">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="badge badge-purple">Private</span>
+                            <span class="badge badge-green ml-2">Degree</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-primary-500">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mt-3 mb-2">BSc in Information Technology</h3>
+                    <p class="text-gray-600 mb-4">SLIIT</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-1">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>4 Years (Full-time)</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="far fa-money-bill-alt mr-2"></i>
+                        <span>LKR 850,000 per year</span>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4 mt-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium text-gray-500">Match Score</span>
+                            <span class="text-sm font-bold text-primary-600">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button class="w-full btn-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <button class="btn-secondary">
+                Load More Programs
+            </button>
+        </div>
+    </div>
+
+    <!-- Program Comparison Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Compare Programs Side by Side</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Select programs to compare their features, requirements, and outcomes.</p>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-xl shadow-lg">
+                    <thead>
+                        <tr>
+                            <th class="py-4 px-6 bg-gray-100 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">Feature</th>
+                            <th class="py-4 px-6 bg-gray-100 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">BSc in Computer Science</th>
+                            <th class="py-4 px-6 bg-gray-100 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">BSc in Software Engineering</th>
+                            <th class="py-4 px-6 bg-gray-100 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">BSc in Information Technology</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Institution</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">University of Colombo</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">University of Moratuwa</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">SLIIT</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Type</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Government</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Government</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Private</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Duration</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">4 Years</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">4 Years</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">4 Years</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Fees</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Free</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Free</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">LKR 850,000 per year</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">A/L Requirements</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Maths: A, Physics: B, Chemistry: C</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Maths: A, Physics: A, Chemistry: B</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Maths: B, Physics: B, Chemistry: C</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Z-Score (Approx)</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">1.8+</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">1.9+</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">N/A</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Key Subjects</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Programming, Algorithms, AI, Data Science</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Software Design, Development, Testing, Project Management</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Networking, Web Development, Databases, IT Management</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Career Pathways</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Software Developer, Data Scientist, Researcher</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">Software Engineer, Systems Architect, DevOps Engineer</td>
+                            <td class="py-4 px-6 text-sm text-gray-500">IT Consultant, Network Administrator, Web Developer</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">Match Score</td>
+                            <td class="py-4 px-6">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 98%"></div>
+                                    </div>
+                                    <span class="ml-2 text-sm font-bold text-primary-600">98%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-6">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                    <span class="ml-2 text-sm font-bold text-primary-600">95%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-6">
+                                <div class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 92%"></div>
+                                    </div>
+                                    <span class="ml-2 text-sm font-bold text-primary-600">92%</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- News and Events Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Latest News & Events</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Stay updated with the latest announcements, scholarships, and events.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- News Card 1 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/600x300?text=Scholarship+News" alt="Scholarship News" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="badge badge-orange">Scholarship</span>
+                        <span class="text-sm text-gray-500 ml-auto">May 15, 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">New STEM Scholarships Announced for 2025/2026</h3>
+                    <p class="text-gray-600 mb-4">The Ministry of Education has announced new scholarship opportunities for students pursuing STEM fields...</p>
+                    <button class="text-primary-600 hover:text-primary-800 font-medium">Read More</button>
+                </div>
+            </div>
+            
+            <!-- News Card 2 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/600x300?text=Application+Deadline" alt="Application Deadline" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="badge badge-blue">Application</span>
+                        <span class="text-sm text-gray-500 ml-auto">May 18, 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">University of Colombo Applications Close Soon</h3>
+                    <p class="text-gray-600 mb-4">The deadline for submitting applications to the University of Colombo for the 2025/2026 academic year is approaching...</p>
+                    <button class="text-primary-600 hover:text-primary-800 font-medium">Read More</button>
+                </div>
+            </div>
+            
+            <!-- News Card 3 -->
+            <div class="card">
+                <img src="https://via.placeholder.com/600x300?text=Education+Fair" alt="Education Fair" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="badge badge-green">Event</span>
+                        <span class="text-sm text-gray-500 ml-auto">May 25, 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">National Higher Education Fair 2025</h3>
+                    <p class="text-gray-600 mb-4">The annual National Higher Education Fair will be held at the BMICH from May 25-27, featuring over 50 institutions...</p>
+                    <button class="text-primary-600 hover:text-primary-800 font-medium">Read More</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <button class="btn-secondary">
+                View All News & Events
+            </button>
+        </div>
+    </div>
+
+    <!-- User Roles Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">User Roles & Access Levels</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Our platform offers different access levels to meet various user needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Visitor Role -->
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Visitor</h3>
+                    <p class="text-gray-600 text-sm mb-4">Public access to browse programs and institutions</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>Browse programs</li>
+                        <li>View institution details</li>
+                        <li>Access public news</li>
+                    </ul>
+                    <p class="text-xs text-gray-500">No registration required</p>
+                </div>
+                
+                <!-- Student Role -->
+                <div class="card p-6 text-center bg-primary-50 border border-primary-200">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-graduate text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Student</h3>
+                    <p class="text-gray-600 text-sm mb-4">Registered users with personalized features</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>Save qualifications</li>
+                        <li>Get personalized recommendations</li>
+                        <li>Bookmark favorite programs</li>
+                        <li>Compare programs</li>
+                    </ul>
+                    <button class="btn-primary text-sm">Register as Student</button>
+                </div>
+                
+                <!-- Editor Role -->
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-edit text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Editor</h3>
+                    <p class="text-gray-600 text-sm mb-4">Data entry personnel</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>Add/edit program details</li>
+                        <li>Update institution information</li>
+                        <li>Create news drafts</li>
+                        <li>Complete assigned tasks</li>
+                    </ul>
+                    <p class="text-xs text-gray-500">Staff access only</p>
+                </div>
+                
+                <!-- Manager Role -->
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tasks text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Manager</h3>
+                    <p class="text-gray-600 text-sm mb-4">Supervisory personnel</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>Assign tasks to editors</li>
+                        <li>Review and approve content</li>
+                        <li>Publish news and events</li>
+                        <li>View basic analytics</li>
+                    </ul>
+                    <p class="text-xs text-gray-500">Management access only</p>
+                </div>
+                
+                <!-- Admin Role -->
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Admin</h3>
+                    <p class="text-gray-600 text-sm mb-4">System administrators</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>Manage all users</li>
+                        <li>Configure system settings</li>
+                        <li>Access all analytics</li>
+                        <li>Full system control</li>
+                    </ul>
+                    <p class="text-xs text-gray-500">Administrative access only</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Higher Education Pathfinder</h3>
+                    <p class="text-gray-400 mb-4">Your comprehensive guide to higher education opportunities in Sri Lanka.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Explore Programs</a></li>
+                        <li><a href="#" class="hover:text-white">Institutions</a></li>
+                        <li><a href="#" class="hover:text-white">News & Events</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Career Guidance</a></li>
+                        <li><a href="#" class="hover:text-white">Scholarship Information</a></li>
+                        <li><a href="#" class="hover:text-white">Application Guidelines</a></li>
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>123 Education Lane, Colombo 07, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3"></i>
+                            <span>+94 11 234 5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@edupath.lk</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 Higher Education Pathfinder. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Add O/L subject
+        document.getElementById('add-ol-subject').addEventListener('click', function() {
+            const container = document.getElementById('ol-subjects-container');
+            const newSubject = document.createElement('div');
+            newSubject.className = 'flex items-center space-x-4 mb-4';
+            newSubject.innerHTML = `
+                <select class="input-field">
+                    <option>Mathematics</option>
+                    <option>Science</option>
+                    <option>English</option>
+                    <option>Sinhala</option>
+                    <option>Tamil</option>
+                    <option>History</option>
+                    <option>Religion</option>
+                    <option>ICT</option>
+                    <option>Business Studies</option>
+                </select>
+                <select class="input-field">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>S</option>
+                    <option>W</option>
+                </select>
+                <button class="text-red-500 hover:text-red-700 remove-subject">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(newSubject);
+            
+            // Add event listener to the new remove button
+            newSubject.querySelector('.remove-subject').addEventListener('click', function() {
+                container.removeChild(newSubject);
+            });
+        });
+        
+        // Add A/L subject
+        document.getElementById('add-al-subject').addEventListener('click', function() {
+            const container = document.getElementById('al-subjects-container');
+            const newSubject = document.createElement('div');
+            newSubject.className = 'flex items-center space-x-4 mb-4';
+            newSubject.innerHTML = `
+                <select class="input-field">
+                    <option>Combined Mathematics</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Biology</option>
+                    <option>ICT</option>
+                    <option>Economics</option>
+                    <option>Business Studies</option>
+                    <option>Accounting</option>
+                </select>
+                <select class="input-field">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>S</option>
+                    <option>F</option>
+                </select>
+                <button class="text-red-500 hover:text-red-700 remove-subject">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(newSubject);
+            
+            // Add event listener to the new remove button
+            newSubject.querySelector('.remove-subject').addEventListener('click', function() {
+                container.removeChild(newSubject);
+            });
+        });
+        
+        // Add event listeners to existing remove buttons
+        document.querySelectorAll('.remove-subject').forEach(button => {
+            button.addEventListener('click', function() {
+                const subjectDiv = this.parentElement;
+                subjectDiv.parentElement.removeChild(subjectDiv);
+            });
+        });
+    </script>
+</body>
+</html>
